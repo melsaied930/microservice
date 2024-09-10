@@ -1,0 +1,7 @@
+Operation        | Path               | HTTP Method | Request Body | Successful Response  | Error Responses
+-----------------|--------------------|-------------|--------------|----------------------|-----------------------
+List Objects     | /Objects           | GET         | -            | Object [] 200         | 401, 403, 4XX, 5XX
+Create Object    | /Objects           | POST        | Object       | Object  200 (or 201)  | 401, 403, 4XX, 5XX
+Read Object      | /Objects /{id}     | GET         | -            | Object  200           | 401, 403, 404, 4XX, 5XX
+Update Object    | /Objects /{id}     | PUT         | Object       | Object  200           | 401, 403, 404, 4XX, 5XX
+Delete Object    | /Objects /{id}     | DELETE      | -            | 204                   | 401, 403, 404, 4XX, 5XX
