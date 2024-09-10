@@ -47,6 +47,8 @@ dependencies {
     // OpenAPI support
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")  // OpenAPI UI for Spring Web MVC
     implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.6.0")  // OpenAPI UI for Spring WebFlux
+    // SpringDoc OpenAPI for Swagger
+//    implementation("org.springdoc:springdoc-openapi-ui:1.7.0")  // Use the latest version
 }
 
 tasks.withType<Test> {
