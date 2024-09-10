@@ -1,0 +1,54 @@
+frontend/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── user/
+│   │   │   │   ├── user-list/
+│   │   │   │   │   ├── user-list.component.ts          # Component for listing users
+│   │   │   │   │   ├── user-list.component.html         # Template for user list
+│   │   │   │   │   └── user-list.component.css          # Styles for user list component
+│   │   │   │   └── user-detail/
+│   │   │   │       ├── user-detail.component.ts         # Component for user details
+│   │   │   │       ├── user-detail.component.html        # Template for user details
+│   │   │   │       └── user-detail.component.css         # Styles for user detail component
+│   │   │   └── shared/
+│   │   │       ├── header/
+│   │   │       │   ├── header.component.ts              # Shared header component
+│   │   │       │   ├── header.component.html             # Template for header
+│   │   │       │   └── header.component.css              # Styles for header component
+│   │   │       └── footer/
+│   │   │           ├── footer.component.ts              # Shared footer component
+│   │   │           ├── footer.component.html             # Template for footer
+│   │   │           └── footer.component.css              # Styles for footer component
+│   │   ├── services/
+│   │   │   └── user.service.ts                          # Service for interacting with User API
+│   │   ├── models/
+│   │   │   └── user.model.ts                            # User model class
+│   │   ├── app.module.ts                                # Angular module configuration
+│   │   ├── app.component.ts                             # Root component
+│   │   ├── app.component.html                            # Template for root component
+│   │   ├── app.component.css                             # Styles for root component
+│   │   ├── app.routing.ts                               # Routing configuration
+│   │   └── core/                                       # Core module for singleton services and utilities
+│   │       ├── interceptors/
+│   │       │   └── http.interceptor.ts                  # HTTP interceptor for handling requests/responses
+│   │       └── guards/
+│   │           └── auth.guard.ts                        # Route guard for authentication
+│   ├── assets/
+│   │   └── styles.css                                  # Global styles
+│   ├── environments/
+│   │   ├── environment.ts                              # Base environment configuration
+│   │   ├── environment.prod.ts                         # Production environment configuration
+│   │   └── environment.dev.ts                          # Development environment configuration
+│   ├── index.html                                      # Main HTML file
+│   ├── main.ts                                        # Main entry point
+│   ├── polyfills.ts                                   # Polyfills for browser compatibility
+│   ├── styles.css                                    # Global styles
+│   ├── tsconfig.app.json                              # TypeScript configuration for application
+│   ├── tsconfig.spec.json                             # TypeScript configuration for tests
+│   ├── angular.json                                   # Angular CLI configuration
+│   ├── package.json                                   # NPM package configuration
+│   ├── tslint.json                                    # TSLint configuration
+│   └── README.md                                      # Project overview and setup instructions
+│
+└── Dockerfile                                         # Dockerfile for building the Angular application

@@ -1,21 +1,38 @@
 # Server configuration
 server:
-  port: 8080
-  shutdown: GRACEFUL
+  port: 8080  # Port on which the server will run
+  shutdown: GRACEFUL  # Graceful shutdown of the server
 
 # Logging configuration
 logging:
   level:
-    org.springframework.data.mongodb: DEBUG
-    com.mongodb: DEBUG
+    com.example.microservice.config: INFO  # Log level for custom application configurations
+    org.springframework.data.mongodb: DEBUG  # Log level for Spring Data MongoDB
+    com.mongodb: DEBUG  # Log level for MongoDB driver
 
 # Spring Data configuration
 spring:
   application:
-    name=microservice:
+    name: microservice  # Application name for identification
+
   autoconfigure:
     exclude:
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration  # Exclude DataSource auto-configuration since MongoDB is used
+
   data:
     mongodb:
-          uri: mongodb://localhost:27017/microservice
+      uri: mongodb://localhost:27017/microservice  # MongoDB connection URI
+
+# SpringDoc configuration for API documentation
+springdoc:
+  api-docs:
+    path: /api-docs  # Path for accessing API documentation in JSON format
+  swagger-ui:
+    path: /api-ui  # Path for Swagger UI
+    operationsSorter: method  # Sort operations by HTTP method
+
+# Useful links
+# - API documentation: http://localhost:8080/api-docs
+# - API documentation in YAML format: http://localhost:8080/api-docs.yaml
+# - Swagger UI: http://localhost:8080/api-ui/index.html
+# - Baeldung guide on Spring REST OpenAPI Documentation: https://www.baeldung.com/spring-rest-openapi-documentation
