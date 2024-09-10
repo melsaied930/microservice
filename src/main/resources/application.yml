@@ -1,0 +1,21 @@
+# Server configuration
+server:
+  port: 8080
+  shutdown: GRACEFUL
+
+# Logging configuration
+logging:
+  level:
+    org.springframework.data.mongodb: DEBUG
+    com.mongodb: DEBUG
+
+# Spring Data configuration
+spring:
+  application:
+    name=microservice:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  data:
+    mongodb:
+          uri: mongodb://localhost:27017/microservice
