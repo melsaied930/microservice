@@ -1,3 +1,5 @@
+# application.yml
+
 # Server configuration
 server:
   port: 8080  # Port on which the server will run
@@ -10,66 +12,10 @@ logging:
     org.springframework.data.mongodb: DEBUG  # Log level for Spring Data MongoDB
     com.mongodb: DEBUG  # Log level for MongoDB driver
 
-# Spring Data configuration
-spring:
-  application:
-    name: microservice  # Application name for identification
-
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration  # Exclude DataSource auto-configuration since MongoDB is used
-
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/microservice  # MongoDB connection URI
-
-# SpringDoc configuration for API documentation
-springdoc:
-  api-docs:
-    path: /api-docs  # Path for accessing API documentation in JSON format
-  swagger-ui:
-    path: /api-ui  # Path for Swagger UI
-    operationsSorter: method  # Sort operations by HTTP method
-    tagsSorter: alpha  # Sort tags alphabetically
-  show-actuator: true # we want to expose /actuator/health only. So first ask to expose all Actuator endpoints
-#  paths-to-exclude: # then exclude everything EXCEPT /actuator/health, I.E. :
-#    - /actuator             # the root actuator endpoint
-#    - /actuator/prometheus  # the prometheus endpoint
-#    - /actuator/health/?*   # as well as /actuator/health/WithSomethingBehind , that's why we're using the "?*" pattern :)
-
-# Useful links
-# - API documentation (JSON): http://localhost:8080/api-docs
-# - API documentation (YAML): http://localhost:8080/api-docs.yaml
-# - Swagger UI: http://localhost:8080/api-ui/index.html
-# - Baeldung guide on Spring REST OpenAPI Documentation: https://www.baeldung.com/spring-rest-openapi-documentation
-
-# Management configuration for Actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-##        include: health, info  # Include 'health' and 'info' endpoints for monitoring
-#  endpoint:
-#    health:
-#      show-details: always  # Show detailed information in health endpoint
-#  health:
-#    diskspace:
-#      enabled: true  # Enable disk space check
-#      path: /  # Path to check disk space
-#      threshold: 10MB  # Minimum disk space threshold
-#    db:
-#      enabled: true  # Enable database health check
-#    redis:
-#      enabled: false  # Disable Redis health check (if Redis is not used)
-
-#management.endpoints.web.exposure.include=*
-#http://localhost:8080/actuator
-#http://localhost:8080/actuator/info
-#http://localhost:8080/actuator/health
-
-    # Add more custom health checks as needed
-    # Example:
-    # custom:
-    #   enabled: true
-    #   check-url: http://localhost:8080/health-check
+# Include external configurations
+spring.config.import:
+  - "classpath:health-check.yml"
+  - "classpath:management.yml"
+  - "classpath:springdoc.yml"
+  - "classpath:spring-data.yml"
+  - "classpath:info.yml"

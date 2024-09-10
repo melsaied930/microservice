@@ -1,0 +1,20 @@
+# health-check.yml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  health:
+    mongo:
+      enabled: true
+    diskspace:
+      enabled: true
+      path: /
+      threshold: 10MB
+    db:
+      enabled: true
+    redis:
+      enabled: false
+
+management.endpoint.health.show-details: always

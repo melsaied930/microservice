@@ -1,0 +1,7 @@
+# info.yml
+
+info:
+  app:
+    name: "My Microservice"
+    description: "This is a Spring Boot microservice."
+    version: "1.0.0"
