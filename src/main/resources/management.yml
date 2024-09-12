@@ -4,7 +4,7 @@ management:
     web:
       exposure:
         # Specify which endpoints are exposed over HTTP. Default is health and info.
-        include: beans, loggers, health, info
+        include: beans, loggers, health, info, metrics
         # You can also expose all endpoints with:
         # include: "*"
         # Uncomment the following to exclude certain endpoints, such as 'threaddump'.
