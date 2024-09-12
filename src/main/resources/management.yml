@@ -1,13 +1,44 @@
-# management.yml
-
+# Spring Actuator Management Settings
 management:
   endpoints:
     web:
       exposure:
-        include: health, info
-#        include: "*"
+        # Specify which endpoints are exposed over HTTP. Default is health and info.
+        include: beans, loggers, health, info
+        # You can also expose all endpoints with:
+        # include: "*"
+        # Uncomment the following to exclude certain endpoints, such as 'threaddump'.
+        # exclude: threaddump
+
   endpoint:
+    shutdown:
+      # Enable graceful shutdown endpoint (accessible through POST request)
+      enabled: true
     health:
-          show-details: always  # Show detailed health information
+      # Enable health endpoint
+      enabled: true
+      # Always show detailed health information in the response
+      show-details: always
+
+  info:
+    # Enable additional information endpoints under 'info' actuator
+    env:
+      enabled: true     # Enable environment information
+    build:
+      enabled: true     # Enable build information
+    git:
+      enabled: true     # Enable git information
+    java:
+      enabled: true     # Enable JVM information
+    os:
+      enabled: true     # Enable operating system information
+
+# Application Info Configuration for Actuator 'info' Endpoint
+info:
+  application:
+    name: "Actuator info"         # Application name to show in 'info' endpoint
+    description: "A demo Spring project with information"  # Description of the app
+  organization: "How to do in Java"  # Organization name or tagline
+
   mongo:
-    enabled: true
+    enabled: true  # Custom MongoDB info section, enabled to show in 'info' endpoint

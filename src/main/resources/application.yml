@@ -2,20 +2,35 @@
 
 # Server configuration
 server:
-  port: 8080  # Port on which the server will run
-  shutdown: GRACEFUL  # Graceful shutdown of the server
+  # Port on which the server will run
+  port: 8080
+  # Graceful shutdown of the server
+  shutdown: GRACEFUL
 
-# Logging configuration
+# Spring Configuration
+spring:
+  profiles:
+    # Active Spring profile, can be "dev", "prod", "test", etc.
+    active: dev
+
+  # External Configurations Import
+  config:
+    import:
+        # External configuration files to be included
+        - "classpath:health-check.yml"
+        - "classpath:management.yml"
+        - "classpath:springdoc.yml"
+        - "classpath:spring-data.yml"
+        - "classpath:info.yml"
+
+# Logging Configuration
 logging:
   level:
-    com.example.microservice.config: INFO  # Log level for custom application configurations
-    org.springframework.data.mongodb: DEBUG  # Log level for Spring Data MongoDB
-    com.mongodb: DEBUG  # Log level for MongoDB driver
-
-# Include external configurations
-spring.config.import:
-  - "classpath:health-check.yml"
-  - "classpath:management.yml"
-  - "classpath:springdoc.yml"
-  - "classpath:spring-data.yml"
-  - "classpath:info.yml"
+    # Log level for custom application configurations (set to INFO)
+    com.example.microservice.config: DEBUG
+    # Log level for Spring Data MongoDB (set to DEBUG)
+    org.springframework.data.mongodb: DEBUG
+    # Log level for MongoDB driver (set to DEBUG)
+    com.mongodb: DEBUG
+    # Log level for web-related logging (set to DEBUG for additional web logging)
+    web: DEBUG
