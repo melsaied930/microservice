@@ -19,6 +19,8 @@ management:
       enabled: true
       # Always show detailed health information in the response
       show-details: always
+    env:
+      show-values: always
 
   info:
     # Enable additional information endpoints under 'info' actuator
@@ -33,12 +35,18 @@ management:
     os:
       enabled: true     # Enable operating system information
 
+  health:
+    mongo:
+      enabled: true
+
+  metrics:
+    mongo:
+      command:
+        enabled: true
+
 # Application Info Configuration for Actuator 'info' Endpoint
 info:
+  organization: "Microservice Inc"                         # Organization name or tagline
   application:
-    name: "Actuator info"         # Application name to show in 'info' endpoint
+    name: "Actuator info"                                  # Application name to show in 'info' endpoint
     description: "A demo Spring project with information"  # Description of the app
-  organization: "How to do in Java"  # Organization name or tagline
-
-  mongo:
-    enabled: true  # Custom MongoDB info section, enabled to show in 'info' endpoint

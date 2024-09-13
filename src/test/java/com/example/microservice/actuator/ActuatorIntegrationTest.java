@@ -1,5 +1,6 @@
 package com.example.microservice.actuator;
 
+import com.example.microservice.MicroserviceApplication;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = MicroserviceApplication.class)
 public class ActuatorIntegrationTest {
 
     @Autowired
@@ -22,17 +23,14 @@ public class ActuatorIntegrationTest {
     @Test
     public void testHealthEndpoint() throws Exception {
         ResponseEntity<String> response = restTemplate.getForEntity("/actuator/health", String.class);
-        assertEquals(200, response.getStatusCode().value()); // Check HTTP status code
+        assertEquals(200, response.getStatusCode().value());
 
         String body = response.getBody();
-        assertNotNull(body); // Ensure the body is not null
+        assertNotNull(body);
 
-        // Parse JSON response
         JsonNode jsonResponse = objectMapper.readTree(body);
-
-        // Validate JSON content
         assertEquals("UP", jsonResponse.path("status").asText());
-        // Additional validation based on expected response
+
         JsonNode components = jsonResponse.path("components");
         assertEquals("UP", components.path("diskSpace").path("status").asText());
         assertEquals("UP", components.path("ping").path("status").asText());
@@ -45,7 +43,6 @@ public class ActuatorIntegrationTest {
 
         String body = response.getBody();
         assertNotNull(body);
-        // Additional validation based on expected response
     }
 
     @Test
@@ -55,6 +52,5 @@ public class ActuatorIntegrationTest {
 
         String body = response.getBody();
         assertNotNull(body);
-        // Additional validation based on expected response
     }
 }

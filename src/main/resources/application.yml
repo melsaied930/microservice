@@ -20,8 +20,9 @@ spring:
       - "classpath:spring-data.yml"
       - "classpath:info.yml"
 
-
 # Logging Configuration
 logging:
   file:
     name: build/logs/spring-boot-app.log  # Specify the file path
+  level:
+    org.springframework.test.context.support.AnnotationConfigContextLoaderUtils: ERROR

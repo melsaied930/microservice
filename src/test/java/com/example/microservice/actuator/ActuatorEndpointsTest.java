@@ -1,5 +1,6 @@
 package com.example.microservice.actuator;
 
+import com.example.microservice.MicroserviceApplication;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = MicroserviceApplication.class)
 public class ActuatorEndpointsTest {
 
     @Autowired
@@ -25,13 +26,11 @@ public class ActuatorEndpointsTest {
         assertEquals(200, response.getStatusCode().value()); // Check HTTP status code
 
         String body = response.getBody();
-        assertNotNull(body); // Ensure the body is not null
+        assertNotNull(body);
 
-        // Parse JSON response
         JsonNode jsonResponse = objectMapper.readTree(body);
-
-        // Validate JSON content
         assertEquals("UP", jsonResponse.path("status").asText());
+
         JsonNode components = jsonResponse.path("components");
         assertEquals("UP", components.path("diskSpace").path("status").asText());
         assertEquals("UP", components.path("ping").path("status").asText());
@@ -45,11 +44,7 @@ public class ActuatorEndpointsTest {
         String body = response.getBody();
         assertNotNull(body);
 
-        // Parse JSON response
         JsonNode jsonResponse = objectMapper.readTree(body);
-
-        // Validate JSON content based on your expected structure
-        // Example: Check if 'app' field exists
         assertNotNull(jsonResponse.path("app").asText(), "App information should be present");
     }
 
@@ -61,11 +56,7 @@ public class ActuatorEndpointsTest {
         String body = response.getBody();
         assertNotNull(body);
 
-        // Parse JSON response
         JsonNode jsonResponse = objectMapper.readTree(body);
-
-        // Validate JSON content based on your expected structure
-        // Example: Check if 'jvm.memory.used' metric is present
         assertNotNull(jsonResponse.path("jvm.memory.used").asText(), "JVM memory used metric should be present");
     }
 }
