@@ -2,10 +2,7 @@
 
 # Server configuration
 server:
-  # Port on which the server will run
   port: 8080
-  # Graceful shutdown of the server
-  shutdown: GRACEFUL
 
 # Spring Configuration
 spring:
@@ -16,48 +13,15 @@ spring:
   # External Configurations Import
   config:
     import:
-        # External configuration files to be included
-        - "classpath:health-check.yml"
-        - "classpath:management.yml"
-        - "classpath:springdoc.yml"
-        - "classpath:spring-data.yml"
-        - "classpath:info.yml"
+      # External configuration files to be included
+      - "classpath:health-check.yml"
+      - "classpath:management.yml"
+      - "classpath:springdoc.yml"
+      - "classpath:spring-data.yml"
+      - "classpath:info.yml"
+
 
 # Logging Configuration
 logging:
-  # Log level for web-related logging (set to DEBUG for additional web logging)
-  web: TRACE
-  root: TRACE
-  level:
-    # Log level for custom application configurations (set to INFO)
-    com:
-      example:
-        microservice:
-          config: TRACE
-      mongodb: TRACE
-    # Log level for Spring Data MongoDB (set to DEBUG)
-    org:
-      springframework:
-        data:
-          # Log level for MongoDB driver (set to DEBUG)
-          mongodb: TRACE
-        boot:
-          test:
-            context:
-              SpringBootTestContextBootstrapper: TRACE
-        test:
-          context:
-            support:
-              AbstractContextLoader: TRACE
-              AnnotationConfigContextLoaderUtils: TRACE
   file:
-    path: logs/myapp.log
-    name: logs/spring-boot-app.log  # Specify the file path
-  pattern:
-    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"  # Customize log pattern
-
-
-
-#    root: INFO
-#    com.example: DEBUG
-#  file:
+    name: build/logs/spring-boot-app.log  # Specify the file path
